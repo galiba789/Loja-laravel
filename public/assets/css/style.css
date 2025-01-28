@@ -1,0 +1,22 @@
+/* Cores */
+:root{
+   --red_main: #FF3C38;
+   --night: #00120B;
+   --baby_powder: #00120B;
+}
+
+.navbar {
+    background-color: var(--night);
+    color: var(--red_main);
+}
+.navbar a {
+    color: var(--red_main);
+}
+.navbar a:hover{
+    color: #FBFEFB
+}
+.logo {
+    padding-left: 5px;
+    max-width: 50px;
+    width: 100%;
+}
