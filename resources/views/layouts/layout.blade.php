@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     {{-- Font-awsone --}}
     <link rel="stylesheet" href="{{ asset("assets/font-awsome/css/all.min.css") }}">
+    {{-- Owl-carousel --}}
+    <link rel="stylesheet" href="{{ asset("assets/owlcarousel/assets/owl.carousel.min.css")}}">
+    <link rel="stylesheet" href="{{ asset("assets/owlcarousel/assets/owl.theme.default.min.css")}}">
 </head>
 <body>
- 
+
     @yield('content')
 
 
@@ -25,5 +28,13 @@
 
 {{-- Font-Awsome --}}
 <script src="{{ asset('assets/font-awsome/js/all.min.js')}}"></script>
+
+{{-- Jquery --}}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+{{-- Owl-carousel --}}
+<script src="{{ asset('assets/owlcarousel/owl.carousel.min.js') }}"></script>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\login;
+use App\Http\Controllers\admin\admin;
 use Illuminate\Support\Facades\Route;
 
 // Rotas da loja
@@ -10,5 +10,8 @@ Route::get('/', function () {
 
 // Rotas do admin
 
-Route::get('/admin', [login::class, 'login']);
-Route::get('/admin/register', [login::class, 'register']);
+Route::get('/admin', [admin::class, 'index']);
+Route::get('/admin/produtos', [admin::class, 'produtos'])->name('admin/produtos');
+Route::get('/admin/produtos/cadastro', [admin::class, 'cadastro'])->name('cadastro');
+Route::post('/admin/produtos/cadastro/submit', [admin::class, 'submit'])->name('cadastrar');
+

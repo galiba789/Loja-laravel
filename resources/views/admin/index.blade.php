@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <h1>Ola teste</h1>
+    
 @stop
 
 
