@@ -317,8 +317,13 @@ return [
         ],
         [
             'text' => 'Monitoramento',
-            'route' => 'admin/produtos',
+            'url' => '#',
             'icon' => 'fa fa-tv'
+        ],
+        [
+            'text' => 'produtos',
+            'route' => 'admin/produtos',
+            'icon' => 'fas fa-shopping-cart'
         ],
     ],
 
