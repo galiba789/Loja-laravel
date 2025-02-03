@@ -35,25 +35,33 @@
                                         <th>ID</th>
                                         <th>Nome</th>
                                         <th>Preço</th>
+                                        <th>Estoque</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
+                                @foreach ($produtos as $produto)
                                 <tbody>
 
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td>R$ </td>
+                                        <td>{{ $produto->id }}</td>
+                                        <td>{{ $produto->nome }}</td>
+                                        <td>R$ {{ $produto->preco }}</td>
+                                        <td>{{ $produto->estoque }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>
+                                            <a href="{{ route('editar', $produto->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>
                                                 Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Tem certeza que deseja excluir?');"><i
-                                                    class="fas fa-trash"></i> Excluir</a>
+                                                <form action="{{ route('excluir', $produto->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir?');">
+                                                        <i class="fas fa-trash"></i> Excluir
+                                                    </button>
+                                                </form>
                                         </td>
                                     </tr>
 
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                     </div>
@@ -61,6 +69,4 @@
             </section>
         </div>
     </div>
-
-
 @stop
