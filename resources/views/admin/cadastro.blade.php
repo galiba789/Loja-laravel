@@ -48,6 +48,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="estoque">Estoque</label>
+                                <input type="text" class="form-control" id="estoque" name="estoque">
+                                @error('estoque')
+                                    <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="imagem">Imagem</label>
                                 <input type="file" class="form-control" id="imagem" name="imagem">
                             </div>
@@ -61,6 +68,3 @@
     </div>
 </div>
 @stop
-
-
-
