@@ -4,11 +4,60 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\produtos;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class admin extends Controller
 {
+    public function login(){
+        return view('admin.login');
+    }
+    public function loginsubmit(Request $request){
+        $request->validate(
+            [
+                'email' => ['required','email', 'min:6', 'max:100'],
+                'password' => ['required', 'min:3', 'max:100'],
+
+            ],
+
+            [
+                'email.required' => 'O email é obrigatorio',
+                'password.required' => 'A senha é obrigatoria',
+                'email.email' => 'Deve ser um email. Ex: teste@gmail.com',
+                'email.min' => 'O seu email deve ter no mínimo :min caracteres',
+                'email.max' => 'O seu email deve ter no máximo :max caracteres',
+                'password.min' => 'Sua senha deve ter no mínimo :min caracteres',
+                'password.max' => 'Sua senha deve ter no máximo :max carateres'
+            ]
+            );
+            $email = $request->input('email');
+            $password = $request->input('password');
+
+            $user = User::where('email', $email)
+                                ->where('is_admin', 1)
+                                ->first();
+            if(!$user){
+                return redirect()->back()->withInput()->with('LoginError', 'Email ou password incorretos');
+            }
+
+            if(!password_verify($password, $user->password)){
+                return redirect()->back()->withInput()->with('LoginError', 'Email ou senha incorretas');
+            }
+
+            $user->updated_at = date('Y-m-d H:i:s');
+            $user->save();
+
+            session(
+                [
+                    'user' => [
+                        'id' => $user->id,
+                        'usename' => $user->email
+                    ]
+                ]
+                    );
+            return redirect()->to('/admin/dashboard');
+    }
     public function index() {
 
         return view('admin.index');

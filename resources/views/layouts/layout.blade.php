@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset("assets/owlcarousel/assets/owl.carousel.min.css")}}">
     <link rel="stylesheet" href="{{ asset("assets/owlcarousel/assets/owl.theme.default.min.css")}}">
 </head>
-<body>
+<body class="fade-in">
 
     @yield('content')
 
@@ -35,6 +35,24 @@
 
 {{-- Owl-carousel --}}
 <script src="{{ asset('assets/owlcarousel/owl.carousel.min.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            items: 3,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 3 }
+            }
+        });
+    });
+</script>
+
 
 </body>
 </html>
