@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="{{ route('home') }}">Home</a>
             </li>
             {{-- <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>

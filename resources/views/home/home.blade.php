@@ -6,11 +6,11 @@
             @foreach ($produtos as $produto)
             <div class="item">
                 <div class="card">
-                    <img src="{{ asset('storage/produtos/' . $produto['imagem']) }}" alt="Imagem do Produto" class="card-img-top" >
+                    <img src="{{ asset('storage/'. $produto["imagem"]) }}" alt="Imagem do Produto" class="card-img-top" >
                     <div class="card-body">
                         <h5 class="card-title">{{ $produto['nome'] }}</h5>
                         <p class="card-text">{{ $produto['descricao']}} </p>
-                        <a href="#" class="btn btn-danger">Comprar</a>
+                        <a href="{{ route('produtos', ['id' => $produto['id']] ) }}" class="btn btn-danger">Comprar</a>
                     </div>
                 </div>
             </div>
