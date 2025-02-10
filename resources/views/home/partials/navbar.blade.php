@@ -11,6 +11,16 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('home') }}">Home</a>
             </li>
+            @if (!session('user'))
+            <li>
+                <a href="{{ route('login') }}" class="nav-link">Login</a>
+            </li>
+            @else
+            <li>
+                <a href="{{ route('logout') }}" class="nav-link">Logout</a>
+            </li>
+            @endif
+
             {{-- <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
             </li>

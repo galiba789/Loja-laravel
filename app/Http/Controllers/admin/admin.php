@@ -34,9 +34,12 @@ class admin extends Controller
             $email = $request->input('email');
             $password = $request->input('password');
 
+
             $user = User::where('email', $email)
                                 ->where('is_admin', 1)
                                 ->first();
+            // dd($user);
+            // exit;
             if(!$user){
                 return redirect()->back()->withInput()->with('LoginError', 'Email ou password incorretos');
             }

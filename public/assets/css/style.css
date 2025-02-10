@@ -27,8 +27,44 @@ body {
 }
 .card img {
     height: 200px;
-    object-fit: cover;
+    object-fit: fill;
 }
 .container {
     margin-top: 50px;
+}
+.product-page {
+    background-color: white;
+    color: black;
+   height: fit-content;
+    border-radius: 10px;
+}
+.product-photo {
+    border: 1px solid black;
+}
+.btn-buy {
+    background-color: red;
+    color: white;
+}
+.btn-buy:hover {
+    background-color: darkred;
+}
+.confirmation-page {
+    background-color: white;
+    color: black;
+}
+.btn-home {
+    background-color: red;
+    color: white;
+}
+.btn-home:hover {
+    background-color: darkred;
+}
+.confirmation-page {
+    height: 250px;
+}
+
+@media only screen and (max-width: 600px) {
+    .confirmation-page {
+        height: 400px;
+    }
 }

@@ -6,7 +6,7 @@
             @foreach ($produtos as $produto)
             <div class="item">
                 <div class="card">
-                    <img src="{{ asset('storage/'. $produto["imagem"]) }}" alt="Imagem do Produto" class="card-img-top" >
+                    <img src="{{ asset('storage/'. $produto["imagem"]) }}" alt="Imagem do Produto" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{ $produto['nome'] }}</h5>
                         <p class="card-text">{{ $produto['descricao']}} </p>

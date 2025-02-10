@@ -18,4 +18,13 @@ class Home extends Controller
         // exit;
         return view('home.product-page', ['produto' => $produto[0]]);
     }
+
+    public function compra($id){
+        $produto = produtos::find($id);
+        $estoque = $produto['estoque'];
+        $estoque -= 1;
+        $produto['estoque'] = $estoque;
+        $produto->save();
+        return view('home.complete', ['produto' => $produto]);
+    }
 }
