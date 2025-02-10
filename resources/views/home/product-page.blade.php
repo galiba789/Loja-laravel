@@ -11,7 +11,7 @@
             <h1>{{ $produto['nome']}}</h1>
             <p>{{ $produto['descricao'] }}</p>
             <a href="{{route('confirmacao',  ['id' => $produto['id']])}}">
-                <button class="btn btn-buy">Comprar</button>
+                <button class="btn btn-buy" onclick="">Comprar</button>
             </a>
         </div>
     </div>

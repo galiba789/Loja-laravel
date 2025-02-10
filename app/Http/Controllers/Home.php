@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\monitoramentoModel;
 use App\Models\produtos;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class Home extends Controller
@@ -20,11 +22,23 @@ class Home extends Controller
     }
 
     public function compra($id){
+        // print_r($_SESSION['user']);
+        // exit;
         $produto = produtos::find($id);
+        $monitoramento = new monitoramentoModel;
         $estoque = $produto['estoque'];
         $estoque -= 1;
         $produto['estoque'] = $estoque;
         $produto->save();
+        session(
+            [
+                'produto' => [
+                    'id' => $produto->id,
+                ]
+            ]
+        );
+
+
         return view('home.complete', ['produto' => $produto]);
     }
 }

@@ -31,7 +31,7 @@
 
 {{-- Jquery --}}
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="{{ asset("assets/js/jquery.min.js")}}"></script>
 
 {{-- Owl-carousel --}}
 <script src="{{ asset('assets/owlcarousel/owl.carousel.min.js') }}"></script>
