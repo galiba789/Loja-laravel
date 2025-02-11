@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class monitoramentoModel extends Model
+class monitoramento extends Model
 {
-    //
+
+
 }

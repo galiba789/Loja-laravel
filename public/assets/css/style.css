@@ -2,9 +2,7 @@ body {
     background-color: black;
     color: white;
 }
-.navbar {
-    background-color: white !important;
-}
+
 .navbar-brand, .nav-link {
     color: red !important;
 }
@@ -68,3 +66,8 @@ body {
         height: 400px;
     }
 }
+#bannerCarousel img {
+    max-height: 400px;
+    object-fit: fill;
+}
+

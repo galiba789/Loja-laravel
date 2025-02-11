@@ -30,6 +30,7 @@ Route::middleware([CheckIsNotLogged::class])->group(function(){
 
 Route::middleware([CheckIsLogged::class])->group(function(){
     Route::get('/admin/dashboard', [admin::class, 'index']);
+    Route::get('/admin/monitoramento', [admin::class, 'monitoramento'])->name('admin/monitoramento');
     Route::get('/admin/produtos', [admin::class, 'produtos'])->name('admin/produtos');
     Route::get('/admin/produtos/cadastro', [admin::class, 'cadastro'])->name('cadastro');
     Route::post('/admin/produtos/cadastro/submit', [admin::class, 'submit'])->name('cadastrar');

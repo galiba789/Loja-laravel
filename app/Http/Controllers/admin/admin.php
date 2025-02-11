@@ -6,17 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\produtos;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class admin extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('admin.login');
     }
-    public function loginsubmit(Request $request){
+    public function loginsubmit(Request $request)
+    {
         $request->validate(
             [
-                'email' => ['required','email', 'min:6', 'max:100'],
+                'email' => ['required', 'email', 'min:6', 'max:100'],
                 'password' => ['required', 'min:3', 'max:100'],
 
             ],
@@ -30,51 +33,54 @@ class admin extends Controller
                 'password.min' => 'Sua senha deve ter no mínimo :min caracteres',
                 'password.max' => 'Sua senha deve ter no máximo :max carateres'
             ]
-            );
-            $email = $request->input('email');
-            $password = $request->input('password');
+        );
+        $email = $request->input('email');
+        $password = $request->input('password');
 
 
-            $user = User::where('email', $email)
-                                ->where('is_admin', 1)
-                                ->first();
-            // dd($user);
-            // exit;
-            if(!$user){
-                return redirect()->back()->withInput()->with('LoginError', 'Email ou password incorretos');
-            }
+        $user = User::where('email', $email)
+            ->where('is_admin', 1)
+            ->first();
+        // dd($user);
+        // exit;
+        if (!$user) {
+            return redirect()->back()->withInput()->with('LoginError', 'Email ou password incorretos');
+        }
 
-            if(!password_verify($password, $user->password)){
-                return redirect()->back()->withInput()->with('LoginError', 'Email ou senha incorretas');
-            }
+        if (!password_verify($password, $user->password)) {
+            return redirect()->back()->withInput()->with('LoginError', 'Email ou senha incorretas');
+        }
 
-            $user->updated_at = date('Y-m-d H:i:s');
-            $user->save();
+        $user->updated_at = date('Y-m-d H:i:s');
+        $user->save();
 
-            session(
-                [
-                    'user' => [
-                        'id' => $user->id,
-                        'usename' => $user->email
-                    ]
+        session(
+            [
+                'user' => [
+                    'id' => $user->id,
+                    'usename' => $user->email
                 ]
-                    );
-            return redirect()->to('/admin/dashboard');
+            ]
+        );
+        return redirect()->to('/admin/dashboard');
     }
-    public function index() {
+    public function index()
+    {
 
         return view('admin.index');
     }
 
-    public function produtos(){
+    public function produtos()
+    {
         $produtos = produtos::all();
         return view('admin.produto', compact('produtos'));
     }
-    public function cadastro(){
+    public function cadastro()
+    {
         return view('admin.cadastro');
-
     }
-    public function submit(Request $request) {
+    public function submit(Request $request)
+    {
         $request->validate(
             [
                 'nome' => ['required', 'min:2'],
@@ -113,12 +119,14 @@ class admin extends Controller
         return redirect()->route('admin/produtos');
     }
 
-    public function editar($id){
+    public function editar($id)
+    {
         $produto = produtos::findOrFail($id);
         return view('admin.edit', compact('produto'));
     }
 
-    public function editarSubmit(Request $request, $id){
+    public function editarSubmit(Request $request, $id)
+    {
         $produto = produtos::findOrFail($id);
 
         $request->validate([
@@ -144,7 +152,8 @@ class admin extends Controller
 
         return redirect()->route('admin/produtos')->with('success', 'Produto atualizado com sucesso!');
     }
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $produto = produtos::findOrFail($id);
 
         if ($produto->imagem) {
@@ -157,4 +166,14 @@ class admin extends Controller
         return redirect()->route('admin/produtos')->with('success', 'Produto excluído com sucesso!');
     }
 
+    public function monitoramento()
+    {
+        $compras = DB::table('monitoramento')
+            ->join('users', 'monitoramento.user_id', '=', 'users.id')
+            ->join('produtos', 'monitoramento.product_id', '=', 'produtos.id')
+            ->select('users.name as user_name', 'produtos.nome as product_name')
+            ->get();
+
+        return view('admin.monitoramento', compact('compras'));
+    }
 }

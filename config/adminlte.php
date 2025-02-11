@@ -317,8 +317,8 @@ return [
         ],
         [
             'text' => 'Monitoramento',
-            'url' => '#',
-            'icon' => 'fa fa-tv'
+            'route' => 'admin/monitoramento',
+            'icon' => 'fa fa-tv',
         ],
         [
             'text' => 'produtos',
