@@ -3,7 +3,6 @@
     @include('home.partials.navbar')
 
     <div class="container mt-5">
-        <!-- Banner -->
         <div id="bannerCarousel" class="carousel slide mb-4" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -12,7 +11,6 @@
             </div>
         </div>
 
-        <!-- Produtos -->
         <h2 class="mb-4">Nossos Produtos</h2>
         <div class="owl-carousel owl-theme">
             @foreach ($produtos as $produto)
@@ -30,7 +28,6 @@
         </div>
     </div>
 
-    <!-- Informações Adicionais -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">

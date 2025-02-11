@@ -325,6 +325,12 @@ return [
             'route' => 'admin/produtos',
             'icon' => 'fas fa-shopping-cart'
         ],
+        [
+            'text' => 'usuarios',
+            'route' => 'admin/usuarios',
+            'icon' => 'fas fa-user',
+
+        ]
     ],
 
     /*

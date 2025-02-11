@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\admin;
+use App\Http\Controllers\admin\usuarios;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckIsLogged;
@@ -37,6 +38,10 @@ Route::middleware([CheckIsLogged::class])->group(function(){
     Route::get('admin/produtos/editar/{id}', [admin::class, 'editar'])->name('editar');
     Route::put('admin/produtos/editar/submit/{id}', [admin::class, 'editarSubmit'])->name('atualizar');
     Route::delete('admin/produtos/deletar/{id}', [admin::class, 'destroy'])->name('excluir');
+    Route::get('admin/usuarios', [usuarios::class, 'index'])->name('admin/usuarios');
+    Route::get('admin/usuarios/cadastro', [usuarios::class, 'cadastro'])->name('admin/cadastro');
+    Route::post('admin/usuarios/cadastroSubmit', [usuarios::class, 'cadastroSubmit'])->name('admin/cadastroSubmit');
+    Route::delete('admin/usuarios/delete/{id}', [usuarios::class, 'delete'])->name('admin/usuarios/delete');
 });
 
 

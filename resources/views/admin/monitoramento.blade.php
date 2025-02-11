@@ -40,7 +40,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($compras as $compra)
+                                        @foreach ($compras as $compra)
                                             <tr>
                                                 <td>{{ $compra->user_name }}</td>
                                                 <td>{{ $compra->product_name }}</td>
@@ -60,4 +60,3 @@
     </div>
     <!-- /.content-wrapper -->
 @stop
-

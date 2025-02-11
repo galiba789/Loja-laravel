@@ -26,25 +26,20 @@ class Home extends Controller
 
     public function compra($id)
     {
-        // Verificar se o usuário está na sessão
-        $user = session('user');
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'Você precisa estar logado para realizar uma compra.');
-        }
 
-        // Encontrar o produto pelo ID
         $produto = produtos::find($id);
-
-        // Atualizar o estoque do produto
         $estoque = $produto['estoque'];
         $estoque -= 1;
         $produto['estoque'] = $estoque;
         $produto->save();
 
-        // Salvar o ID do produto na sessão
+        $user = session('user');
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Você precisa estar logado para realizar uma compra.');
+        }
+
         session(['produto' => ['id' => $produto->id]]);
 
-        // Inserir dados na tabela monitoramento
         DB::table('monitoramento')->insert([
             'user_id' => $user['id'],
             'product_id' => $produto->id,
